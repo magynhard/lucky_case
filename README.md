@@ -106,7 +106,7 @@ And then execute:
 
 Or install it yourself by:
 
-    $ gem install yaml_extend
+    $ gem install lucky_case
 
 
 
