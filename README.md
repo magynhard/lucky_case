@@ -57,7 +57,7 @@ LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant'
 LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)     # => 'some/pathExample/folder'
 # identifier
 LuckyCase.case('this_can_only_be_snake_case')          # => :snake_case
-LuckyCase.cases('multiple')                            # => [ :snake_case, :camel_case, :dash_case ]
+LuckyCase.cases('validformultiple')                    # => [ :snake_case, :camel_case, :dash_case, :word_case ]
 # checkers
 LuckyCase.snake_case?('valid_snake_case')              # => true
 LuckyCase.upper_snake_case?('UPPER_SNAKE')             # => true
