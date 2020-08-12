@@ -30,13 +30,17 @@ You can either use the static LuckyCase class with its method or optionally monk
 require 'lucky_case'
 
 # converters
-LuckyCase.snake_case('ExamplePascalString')            # => 'example_pascal_string'
-LuckyCase.upper_snake_case('Example-Train-String')     # => 'EXAMPLE_TRAIN_STRING'
-LuckyCase.pascal_case('example_snake_string')          # => 'ExampleSnakeString'
-LuckyCase.camel_case('example-dash-string')            # => 'exampleDashString'
-LuckyCase.dash_case('ExamplePascalString')             # => 'example-pascal-string'
-LuckyCase.upper_dash_case('ExamplePascalString')       # => 'EXAMPLE-PASCAL-STRING'
-LuckyCase.train_case('example_snake_string')           # => 'Example-Snake-String'
+LuckyCase.snake_case('PascalToSnake')                  # => 'pascal_to_snake'
+LuckyCase.upper_snake_case('Train-To-Upper-Snake')     # => 'TRAIN_TO_UPPER_SNAKE'
+LuckyCase.pascal_case('snake_to_pascal')               # => 'SnakeToPascal'
+LuckyCase.camel_case('dash-to-camel-case')             # => 'dashToCamelCase'
+LuckyCase.dash_case('PascalToDashCase')                # => 'pascal-to-dash-case'
+LuckyCase.upper_dash_case('PascalToUpperDash')         # => 'PASCAL-TO-UPPER-DASH'
+LuckyCase.train_case('snake_to_train_case')            # => 'Snake-To-Train-Case'
+LuckyCase.word_case('PascalToWordCase')                # => 'pascal to word case'
+LuckyCase.upper_word_case('PascalToUpperWord')         # => 'PASCAL TO UPPER WORD'
+LuckyCase.capital_word_case('snake_to_capital_word')   # => 'Snake To Capital Word'
+LuckyCase.sentence_case('snake_to_sentence_case')      # => 'Snake to sentence case'
 LuckyCase.mixed_case('example_snake_string')           # => 'Example-snake_STRING'
 # converter by type
 LuckyCase.convert_case('some_snake', :pascal_case)     # => 'SomeSnake'
@@ -56,12 +60,16 @@ LuckyCase.case('this_can_only_be_snake_case')          # => :snake_case
 LuckyCase.cases('multiple')                            # => [ :snake_case, :camel_case, :dash_case ]
 # checkers
 LuckyCase.snake_case?('valid_snake_case')              # => true
-LuckyCase.upper_snake_case?('inValidSnakeCase')        # => false
+LuckyCase.upper_snake_case?('UPPER_SNAKE')             # => true
 LuckyCase.pascal_case?('PascalCase')                   # => true
 LuckyCase.camel_case?('camelCase')                     # => true
 LuckyCase.dash_case?('dash-case')                      # => true
 LuckyCase.upper_dash_case?('DASH-CASE')                # => true
 LuckyCase.train_case?('Train-Case')                    # => true
+LuckyCase.word_case?('word case')                      # => true
+LuckyCase.upper_word_case?('UPPER WORD CASE')          # => true
+LuckyCase.capital_word_case?('Capital Word Case')      # => true
+LuckyCase.sentence_case?('Sentence case string')       # => true
 LuckyCase.mixed_case?('mixed_Case')                    # => true
 LuckyCase.upper_case?('UPPER50984')                    # => true
 LuckyCase.lower_case?('lower_cheese')                  # => true

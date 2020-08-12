@@ -18,6 +18,10 @@ module LuckyCase
       dash_case: /^([[:lower:]]){1}[[:lower:]\-0-9]*[[:lower:]0-9]+$/,
       upper_dash_case: /^([[:upper:]]){1}[[:upper:]\-0-9]*[[:upper:]0-9]+$/,
       train_case: /^([[:upper:]][[:lower:]0-9]*\-|[0-9]+\-)*([[:upper:]][[:lower:]0-9]*)$/,
+      word_case: /^[[:lower:]]{1}[[:lower:] 0-9]+$/,
+      upper_word_case: /^[[:upper:]]{1}[[:upper:] 0-9]+$/,
+      capital_word_case: /^([[:upper:]][[:lower:]0-9]*\ |[0-9]+\ )*([[:upper:]][[:lower:]0-9]*)$/,
+      sentence_case: /^[[:upper:]]{1}[[:lower:] 0-9]+$/,
       mixed_case: /^[[:upper:][:lower:]][[:upper:][:lower:]_\-0-9]*$/,
   }
 
@@ -392,6 +396,146 @@ module LuckyCase
   end
 
   #----------------------------------------------------------------------------------------------------
+  # WORD CASE
+  #----------------------------------------------------------------------------------------------------
+
+  # Converts the given string from any case
+  # into word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'this is an example string'
+  #
+  # @param [String] string to convert
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def self.word_case(string, preserve_prefixed_underscores: true)
+    a = split_case_string string
+    converted = a.join(' ')
+    if preserve_prefixed_underscores
+      underscores_at_start(string) + converted
+    else
+      converted
+    end
+  end
+
+  # Checks if the string is word case
+  #
+  # @param [String] string to check
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def self.word_case?(string, allow_prefixed_underscores: true)
+    s = if allow_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    _case_match? s, :word_case
+  end
+
+  # Converts the given string from any case
+  # into upper word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'THIS IS AN EXAMPLE STRING'
+  #
+  # @param [String] string to convert
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def self.upper_word_case(string, preserve_prefixed_underscores: true)
+    a = split_case_string string
+    converted = a.map { |e| upper_case e }.join(' ')
+    if preserve_prefixed_underscores
+      underscores_at_start(string) + converted
+    else
+      converted
+    end
+  end
+
+  # Checks if the string is upper word case
+  #
+  # @param [String] string to check
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def self.upper_word_case?(string, allow_prefixed_underscores: true)
+    s = if allow_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    _case_match? s, :upper_word_case
+  end
+
+  # Converts the given string from any case
+  # into capital word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'This Is An Example String'
+  #
+  # @param [String] string to convert
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def self.capital_word_case(string, preserve_prefixed_underscores: true)
+    a = split_case_string string
+    converted = a.map { |e| capital e }.join(' ')
+    if preserve_prefixed_underscores
+      underscores_at_start(string) + converted
+    else
+      converted
+    end
+  end
+
+  # Checks if the string is capital word case
+  #
+  # @param [String] string to check
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def self.capital_word_case?(string, allow_prefixed_underscores: true)
+    s = if allow_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    _case_match? s, :capital_word_case
+  end
+
+  #----------------------------------------------------------------------------------------------------
+  # SENTENCE CASE
+  #----------------------------------------------------------------------------------------------------
+
+  # Converts the given string from any case
+  # into sentence case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'This is an example string'
+  #
+  # @param [String] string to convert
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def self.sentence_case(string, preserve_prefixed_underscores: true)
+    a = split_case_string string
+    converted = capital(a.join(' '))
+    if preserve_prefixed_underscores
+      underscores_at_start(string) + converted
+    else
+      converted
+    end
+  end
+
+  # Checks if the string is sentence case
+  #
+  # @param [String] string to check
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def self.sentence_case?(string, allow_prefixed_underscores: true)
+    s = if allow_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    _case_match? s, :sentence_case
+  end
+
+  #----------------------------------------------------------------------------------------------------
   # CAPITALIZE
   #----------------------------------------------------------------------------------------------------
 
@@ -539,7 +683,7 @@ module LuckyCase
   # @param [Boolean] preserve_prefixed_underscores
   # @return [Constant]
   def self.constantize(string)
-    s = string.gsub('/','::')
+    s = string.gsub('/', '::')
     constants = if s.include? '::'
                   s.split('::')
                 else
@@ -627,6 +771,7 @@ module LuckyCase
   def self.split_case_string(string)
     s = cut_underscores_at_start string
     s = s.gsub(/([[:upper:]])/, '_\1') unless upper_case? s # prepend all upper characters with underscore
+    s = s.gsub(' ', '_') # replace all spaces with underscore
     s = s.gsub('-', '_') # replace all dashes with underscore
     s = cut_underscores_at_start s
     s.downcase.split('_').reject(&:empty?) # split everything by underscore

@@ -287,6 +287,110 @@ class String
   end
 
   #----------------------------------------------------------------------------------------------------
+  # WORD CASE
+  #----------------------------------------------------------------------------------------------------
+
+  # Converts the given string from any case
+  # into word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'this is an example string'
+  #
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def word_case(preserve_prefixed_underscores: true)
+    LuckyCase.word_case self, preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  def word_case!(preserve_prefixed_underscores: true)
+    set_self_value self.word_case preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  # Checks if the string is word case
+  #
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def word_case?(allow_prefixed_underscores: true)
+    LuckyCase.word_case? self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  # Converts the given string from any case
+  # into upper word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'THIS IS AN EXAMPLE STRING'
+  #
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def upper_word_case(preserve_prefixed_underscores: true)
+    LuckyCase.upper_word_case self, preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  def upper_word_case!(preserve_prefixed_underscores: true)
+    set_self_value self.upper_word_case preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  # Checks if the string is upper word case
+  #
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def upper_word_case?(allow_prefixed_underscores: true)
+    LuckyCase.upper_word_case? self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  # Converts the given string from any case
+  # into capital word case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'This Is An Example String'
+  #
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def capital_word_case(preserve_prefixed_underscores: true)
+    LuckyCase.capital_word_case self, preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  def capital_word_case!(preserve_prefixed_underscores: true)
+    set_self_value self.capital_word_case preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  # Checks if the string is capital word case
+  #
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def capital_word_case?(allow_prefixed_underscores: true)
+    LuckyCase.capital_word_case? self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  #----------------------------------------------------------------------------------------------------
+  # SENTENCE CASE
+  #----------------------------------------------------------------------------------------------------
+
+  # Converts the given string from any case
+  # into sentence case
+  #
+  # @example conversion
+  #   'this-isAnExample_string' => 'This is an example string'
+  #
+  # @param [Boolean] preserve_prefixed_underscores
+  # @return [String]
+  def sentence_case(preserve_prefixed_underscores: true)
+    LuckyCase.sentence_case self, preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  def sentence_case!(preserve_prefixed_underscores: true)
+    set_self_value self.sentence_case preserve_prefixed_underscores: preserve_prefixed_underscores
+  end
+
+  # Checks if the string is sentence case
+  #
+  # @param [Boolean] allow_prefixed_underscores
+  # @return [Boolean]
+  def sentence_case?(allow_prefixed_underscores: true)
+    LuckyCase.sentence_case? self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  #----------------------------------------------------------------------------------------------------
   # CAPITALIZE
   #----------------------------------------------------------------------------------------------------
 

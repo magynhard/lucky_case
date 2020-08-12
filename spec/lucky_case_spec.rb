@@ -52,6 +52,22 @@ RSpec.describe LuckyCase, '#split_case_string' do
       result = LuckyCase.split_case_string('Train-Case-String')
       expect(result).to eql(%w[train case string])
     end
+    it 'can split word case' do
+      result = LuckyCase.split_case_string('word case string')
+      expect(result).to eql(%w[word case string])
+    end
+    it 'can split upper word case' do
+      result = LuckyCase.split_case_string('UPPER WORD CASE')
+      expect(result).to eql(%w[upper word case])
+    end
+    it 'can split capital word case' do
+      result = LuckyCase.split_case_string('Capital Word Case')
+      expect(result).to eql(%w[capital word case])
+    end
+    it 'can split sentence case' do
+      result = LuckyCase.split_case_string('Sentence case string')
+      expect(result).to eql(%w[sentence case string])
+    end
     it 'can split mixed case' do
       result = LuckyCase.split_case_string('mixed_Case-string')
       expect(result).to eql(%w[mixed case string])
@@ -91,6 +107,22 @@ RSpec.describe LuckyCase, '#split_case_string' do
       result = LuckyCase.split_case_string('___Train-Case-String')
       expect(result).to eql(%w[train case string])
     end
+    it 'can split word case' do
+      result = LuckyCase.split_case_string('___word case string')
+      expect(result).to eql(%w[word case string])
+    end
+    it 'can split upper word case' do
+      result = LuckyCase.split_case_string('___UPPER WORD CASE STRING')
+      expect(result).to eql(%w[upper word case string])
+    end
+    it 'can split capital word case' do
+      result = LuckyCase.split_case_string('___Capital Word Case String')
+      expect(result).to eql(%w[capital word case string])
+    end
+    it 'can split sentence case' do
+      result = LuckyCase.split_case_string('___Sentence case string')
+      expect(result).to eql(%w[sentence case string])
+    end
     it 'can split mixed case' do
       result = LuckyCase.split_case_string('__mixed_Case-string')
       expect(result).to eql(%w[mixed case string])
@@ -129,6 +161,22 @@ RSpec.describe LuckyCase, '#case' do
     it 'can detect train case' do
       result = LuckyCase.case('Train-Case-String')
       expect(result).to eql(:train_case)
+    end
+    it 'can detect word case' do
+      result = LuckyCase.case('word case string')
+      expect(result).to eql(:word_case)
+    end
+    it 'can detect upper word case' do
+      result = LuckyCase.case('UPPER WORD CASE STRING')
+      expect(result).to eql(:upper_word_case)
+    end
+    it 'can detect capital word case' do
+      result = LuckyCase.case('Capital Word Case String')
+      expect(result).to eql(:capital_word_case)
+    end
+    it 'can detect sentence case' do
+      result = LuckyCase.case('Sentence case string')
+      expect(result).to eql(:sentence_case)
     end
     it 'can detect mixed case' do
       result = LuckyCase.case('mixed_Case-string')
@@ -173,6 +221,22 @@ RSpec.describe LuckyCase, '#case' do
       result = LuckyCase.case('___Train-Case-String')
       expect(result).to eql(:train_case)
     end
+    it 'can detect word case' do
+      result = LuckyCase.case('___word case string')
+      expect(result).to eql(:word_case)
+    end
+    it 'can detect upper word case' do
+      result = LuckyCase.case('___WORD CASE STRING')
+      expect(result).to eql(:upper_word_case)
+    end
+    it 'can detect capital word case' do
+      result = LuckyCase.case('___Word Case String')
+      expect(result).to eql(:capital_word_case)
+    end
+    it 'can detect sentence case' do
+      result = LuckyCase.case('___Sentence case string')
+      expect(result).to eql(:sentence_case)
+    end
     it 'can detect mixed case' do
       result = LuckyCase.case('____mixed_Case-string')
       expect(result).to eql(:mixed_case)
@@ -192,61 +256,128 @@ end
 
 RSpec.describe LuckyCase do
   context 'Checking variants without prefixed underscores: ' do
+    all_cases = {
+        snake_case: 'snake_case_string',
+        upper_snake_case: 'UPPER_SNAKE_CASE_STRING',
+        pascal_case: 'PascalCaseString',
+        camel_case: 'camelCaseString',
+        dash_case: 'dash-case-string',
+        upper_dash_case: 'UPPER-DASH-CASE-STRING',
+        train_case: 'Train-Case-String',
+        word_case: 'word case string',
+        upper_word_case: 'UPPER WORD CASE STRING',
+        capital_word_case: 'Capital Word Case String',
+        sentence_case: 'Sentence case string',
+    }
     it 'can check valid snake case' do
-      result = LuckyCase.snake_case?('snake_case_string')
+      result = LuckyCase.snake_case?(all_cases[:snake_case])
       expect(result).to eql(true)
     end
     it 'can check invalid snake case' do
-      result = LuckyCase.snake_case?('Snake_case_string')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :snake_case }.each do |k,v|
+        result = LuckyCase.snake_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid upper snake case' do
-      result = LuckyCase.upper_snake_case?('UPPER_SNAKE_CASE_STRING')
+      result = LuckyCase.upper_snake_case?(all_cases[:upper_snake_case])
       expect(result).to eql(true)
     end
     it 'can check invalid upper snake case' do
-      result = LuckyCase.upper_snake_case?('UPPER-SNAKE_CASE_STRING')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :upper_snake_case }.each do |k,v|
+        result = LuckyCase.upper_snake_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid pascal case' do
-      result = LuckyCase.pascal_case?('PascalCaseString')
+      result = LuckyCase.pascal_case?(all_cases[:pascal_case])
       expect(result).to eql(true)
     end
     it 'can check invalid pascal case' do
-      result = LuckyCase.pascal_case?('PascalCase_String')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :pascal_case }.each do |k,v|
+        result = LuckyCase.pascal_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid camel case' do
-      result = LuckyCase.camel_case?('camelCaseString')
+      result = LuckyCase.camel_case?(all_cases[:camel_case])
       expect(result).to eql(true)
     end
     it 'can check invalid camel case' do
-      result = LuckyCase.camel_case?('CamelCaseString')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :camel_case }.each do |k,v|
+        result = LuckyCase.camel_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid dash case' do
-      result = LuckyCase.dash_case?('dash-case-string')
+      result = LuckyCase.dash_case?(all_cases[:dash_case])
       expect(result).to eql(true)
     end
     it 'can check invalid dash case' do
-      result = LuckyCase.dash_case?('dash-case-strinG')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :dash_case }.each do |k,v|
+        result = LuckyCase.dash_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid upper dash case' do
-      result = LuckyCase.upper_dash_case?('UPPER-DASH-CASE-STRING')
+      result = LuckyCase.upper_dash_case?(all_cases[:upper_dash_case])
       expect(result).to eql(true)
     end
     it 'can check invalid upper dash case' do
-      result = LuckyCase.upper_dash_case?('UPPER_DASH-CASE-STRING')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :upper_dash_case }.each do |k,v|
+        result = LuckyCase.upper_dash_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid train case' do
-      result = LuckyCase.train_case?('Train-Case-String')
+      result = LuckyCase.train_case?(all_cases[:train_case])
       expect(result).to eql(true)
     end
     it 'can check invalid train case' do
-      result = LuckyCase.train_case?('train-Case-String')
-      expect(result).to eql(false)
+      all_cases.reject { |k,v| k == :train_case }.each do |k,v|
+        result = LuckyCase.train_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
+    end
+    it 'can check valid word case' do
+      result = LuckyCase.word_case?(all_cases[:word_case])
+      expect(result).to eql(true)
+    end
+    it 'can check invalid word case' do
+      all_cases.reject { |k,v| k == :word_case }.each do |k,v|
+        result = LuckyCase.word_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
+    end
+    it 'can check valid upper word case' do
+      result = LuckyCase.upper_word_case?(all_cases[:upper_word_case])
+      expect(result).to eql(true)
+    end
+    it 'can check invalid upper word case' do
+      all_cases.reject { |k,v| k == :upper_word_case }.each do |k,v|
+        result = LuckyCase.upper_word_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
+    end
+    it 'can check valid capital word case' do
+      result = LuckyCase.capital_word_case?(all_cases[:capital_word_case])
+      expect(result).to eql(true)
+    end
+    it 'can check invalid capital word case' do
+      all_cases.reject { |k,v| k == :capital_word_case }.each do |k,v|
+        result = LuckyCase.capital_word_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
+    end
+    it 'can check valid sentence case' do
+      result = LuckyCase.sentence_case?(all_cases[:sentence_case])
+      expect(result).to eql(true)
+    end
+    it 'can check invalid sentence case' do
+      all_cases.reject { |k,v| k == :sentence_case }.each do |k,v|
+        result = LuckyCase.sentence_case?(v)
+        expect(result).to eql(false), "Failed with '#{k}'"
+      end
     end
     it 'can check valid mixed case' do
       result = LuckyCase.mixed_case?('mixed_Case-string')
@@ -682,6 +813,246 @@ RSpec.describe LuckyCase do
     end
   end
 
+  context 'word case conversions: ' do
+    it 'default into word case' do
+      conversion_examples = {
+          'ExampleOne' => 'example one',
+          'exampleTwo' => 'example two',
+          'example-three' => 'example three',
+          'Example-Four' => 'example four',
+          'EXAMPLE-FIVE' => 'example five',
+          'EXAMPLE_SIX' => 'example six',
+          'example_Seven-extra' => 'example seven extra',
+          'example_eight' => 'example eight',
+          '_example_underscoreOne' => '_example underscore one',
+          '___example_underscoreTwo' => '___example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :word_case)
+      end
+    end
+    it 'into word case with preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => '_example one',
+          '_exampleTwo' => '_example two',
+          '____example-three' => '____example three',
+          '_Example-Four' => '_example four',
+          '__EXAMPLE-FIVE' => '__example five',
+          '___EXAMPLE_SIX' => '___example six',
+          '_____example_Seven-extra' => '_____example seven extra',
+          '__example_eight' => '__example eight',
+          '_example_underscoreOne' => '_example underscore one',
+          '___example_underscoreTwo' => '___example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :word_case)
+      end
+    end
+    it 'into word case without preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => 'example one',
+          '_exampleTwo' => 'example two',
+          '____example-three' => 'example three',
+          '_Example-Four' => 'example four',
+          '__EXAMPLE-FIVE' => 'example five',
+          '___EXAMPLE_SIX' => 'example six',
+          'example_Seven-extra' => 'example seven extra',
+          '__example_eight' => 'example eight',
+          '_example_underscoreOne' => 'example underscore one',
+          '___example_underscoreTwo' => 'example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.word_case source, preserve_prefixed_underscores: false
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :word_case, preserve_prefixed_underscores: false)
+      end
+    end
+  end
+
+  context 'upper word case conversions: ' do
+    it 'default into upper word case' do
+      conversion_examples = {
+          'ExampleOne' => 'EXAMPLE ONE',
+          'exampleTwo' => 'EXAMPLE TWO',
+          'example-three' => 'EXAMPLE THREE',
+          'Example-Four' => 'EXAMPLE FOUR',
+          'EXAMPLE-FIVE' => 'EXAMPLE FIVE',
+          'EXAMPLE_SIX' => 'EXAMPLE SIX',
+          'example_Seven-extra' => 'EXAMPLE SEVEN EXTRA',
+          'example_eight' => 'EXAMPLE EIGHT',
+          '_example_underscoreOne' => '_EXAMPLE UNDERSCORE ONE',
+          '___example_underscoreTwo' => '___EXAMPLE UNDERSCORE TWO',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.upper_word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :upper_word_case)
+      end
+    end
+    it 'into upper word case with preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => '_EXAMPLE ONE',
+          '_exampleTwo' => '_EXAMPLE TWO',
+          '____example-three' => '____EXAMPLE THREE',
+          '_Example-Four' => '_EXAMPLE FOUR',
+          '__EXAMPLE-FIVE' => '__EXAMPLE FIVE',
+          '___EXAMPLE_SIX' => '___EXAMPLE SIX',
+          '_____example_Seven-extra' => '_____EXAMPLE SEVEN EXTRA',
+          '__example_eight' => '__EXAMPLE EIGHT',
+          '_example_underscoreOne' => '_EXAMPLE UNDERSCORE ONE',
+          '___example_underscoreTwo' => '___EXAMPLE UNDERSCORE TWO',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.upper_word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :upper_word_case)
+      end
+    end
+    it 'into upper word case without preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => 'EXAMPLE ONE',
+          '_exampleTwo' => 'EXAMPLE TWO',
+          '____example-three' => 'EXAMPLE THREE',
+          '_Example-Four' => 'EXAMPLE FOUR',
+          '__EXAMPLE-FIVE' => 'EXAMPLE FIVE',
+          '___EXAMPLE_SIX' => 'EXAMPLE SIX',
+          'example_Seven-extra' => 'EXAMPLE SEVEN EXTRA',
+          '__example_eight' => 'EXAMPLE EIGHT',
+          '_example_underscoreOne' => 'EXAMPLE UNDERSCORE ONE',
+          '___example_underscoreTwo' => 'EXAMPLE UNDERSCORE TWO',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.upper_word_case source, preserve_prefixed_underscores: false
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :upper_word_case, preserve_prefixed_underscores: false)
+      end
+    end
+  end
+
+  context 'capital word case conversions: ' do
+    it 'default into capital word case' do
+      conversion_examples = {
+          'ExampleOne' => 'Example One',
+          'exampleTwo' => 'Example Two',
+          'example-three' => 'Example Three',
+          'Example-Four' => 'Example Four',
+          'EXAMPLE-FIVE' => 'Example Five',
+          'EXAMPLE_SIX' => 'Example Six',
+          'example_Seven-extra' => 'Example Seven Extra',
+          'example_eight' => 'Example Eight',
+          '_example_underscoreOne' => '_Example Underscore One',
+          '___example_underscoreTwo' => '___Example Underscore Two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.capital_word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :capital_word_case)
+      end
+    end
+    it 'into capital word case with preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => '_Example One',
+          '_exampleTwo' => '_Example Two',
+          '____example-three' => '____Example Three',
+          '_Example-Four' => '_Example Four',
+          '__EXAMPLE-FIVE' => '__Example Five',
+          '___EXAMPLE_SIX' => '___Example Six',
+          '_____example_Seven-extra' => '_____Example Seven Extra',
+          '__example_eight' => '__Example Eight',
+          '_example_underscoreOne' => '_Example Underscore One',
+          '___example_underscoreTwo' => '___Example Underscore Two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.capital_word_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :capital_word_case)
+      end
+    end
+    it 'into capital word case without preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => 'Example One',
+          '_exampleTwo' => 'Example Two',
+          '____example-three' => 'Example Three',
+          '_Example-Four' => 'Example Four',
+          '__EXAMPLE-FIVE' => 'Example Five',
+          '___EXAMPLE_SIX' => 'Example Six',
+          'example_Seven-extra' => 'Example Seven Extra',
+          '__example_eight' => 'Example Eight',
+          '_example_underscoreOne' => 'Example Underscore One',
+          '___example_underscoreTwo' => 'Example Underscore Two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.capital_word_case source, preserve_prefixed_underscores: false
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :capital_word_case, preserve_prefixed_underscores: false)
+      end
+    end
+  end
+
+  context 'sentence case conversions: ' do
+    it 'default into sentence case' do
+      conversion_examples = {
+          'ExampleOne' => 'Example one',
+          'exampleTwo' => 'Example two',
+          'example-three' => 'Example three',
+          'Example-Four' => 'Example four',
+          'EXAMPLE-FIVE' => 'Example five',
+          'EXAMPLE_SIX' => 'Example six',
+          'example_Seven-extra' => 'Example seven extra',
+          'example_eight' => 'Example eight',
+          '_example_underscoreOne' => '_Example underscore one',
+          '___example_underscoreTwo' => '___Example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.sentence_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :sentence_case)
+      end
+    end
+    it 'into sentence case with preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => '_Example one',
+          '_exampleTwo' => '_Example two',
+          '____example-three' => '____Example three',
+          '_Example-Four' => '_Example four',
+          '__EXAMPLE-FIVE' => '__Example five',
+          '___EXAMPLE_SIX' => '___Example six',
+          '_____example_Seven-extra' => '_____Example seven extra',
+          '__example_eight' => '__Example eight',
+          '_example_underscoreOne' => '_Example underscore one',
+          '___example_underscoreTwo' => '___Example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.sentence_case source
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :sentence_case)
+      end
+    end
+    it 'into sentence case without preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => 'Example one',
+          '_exampleTwo' => 'Example two',
+          '____example-three' => 'Example three',
+          '_Example-Four' => 'Example four',
+          '__EXAMPLE-FIVE' => 'Example five',
+          '___EXAMPLE_SIX' => 'Example six',
+          'example_Seven-extra' => 'Example seven extra',
+          '__example_eight' => 'Example eight',
+          '_example_underscoreOne' => 'Example underscore one',
+          '___example_underscoreTwo' => 'Example underscore two',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.sentence_case source, preserve_prefixed_underscores: false
+        expect(final_result).to eql(expected_result)
+        expect(final_result).to eql(LuckyCase.convert_case source, :sentence_case, preserve_prefixed_underscores: false)
+      end
+    end
+  end
+
   context 'capital conversions: ' do
     it 'default into capital' do
       conversion_examples = {
@@ -756,15 +1127,15 @@ RSpec.describe LuckyCase, '#cases' do
   context 'detect cases: ' do
     it 'detects several cases in lower case string' do
       r = LuckyCase.cases "lotofcases"
-      expect(r).to match_array(%i[snake_case dash_case camel_case])
+      expect(r).to match_array(%i[snake_case dash_case camel_case word_case])
     end
     it 'detects several cases in upper case string' do
       r = LuckyCase.cases "LOTOFCASES"
-      expect(r).to match_array(%i[pascal_case upper_snake_case upper_dash_case])
+      expect(r).to match_array(%i[pascal_case upper_snake_case upper_dash_case upper_word_case])
     end
     it 'detects several cases in single word pascal case string' do
       r = LuckyCase.cases "Single"
-      expect(r).to match_array(%i[pascal_case train_case])
+      expect(r).to match_array(%i[pascal_case train_case sentence_case capital_word_case])
     end
   end
 end
