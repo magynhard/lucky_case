@@ -64,7 +64,7 @@ LuckyCase.upper_dash_case?('DASH-CASE')                # => true
 LuckyCase.train_case?('Train-Case')                    # => true
 LuckyCase.mixed_case?('mixed_Case')                    # => true
 LuckyCase.upper_case?('UPPER50984')                    # => true
-LuckyCase.lower_case?('mixed_Case')                    # => true
+LuckyCase.lower_case?('lower_cheese')                  # => true
 LuckyCase.capital?('Some')                             # => true
 LuckyCase.capitalized?('some')                         # => false
 ```
