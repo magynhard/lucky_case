@@ -42,8 +42,10 @@ LuckyCase.upper_word_case('PascalToUpperWord')         # => 'PASCAL TO UPPER WOR
 LuckyCase.capital_word_case('snake_to_capital_word')   # => 'Snake To Capital Word'
 LuckyCase.sentence_case('snake_to_sentence_case')      # => 'Snake to sentence case'
 LuckyCase.mixed_case('example_snake_string')           # => 'Example-snake_STRING'
+
 # converter by type
 LuckyCase.convert_case('some_snake', :pascal_case)     # => 'SomeSnake'
+
 # transformers
 LuckyCase.lower_case('Some_FuckingShit')               # => 'some_fuckingshit'
 LuckyCase.upper_case('Some_FuckingShit')               # => 'SOME_FUCKINGSHIT'
@@ -55,9 +57,11 @@ LuckyCase.constantize('SOME_CONSTANT')                 # => SomeConstant
 LuckyCase.constantize('some/path_example/folder')      # => Some::PathExample::Folder
 LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant'
 LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)     # => 'some/pathExample/folder'
+
 # identifiers
 LuckyCase.case('this_can_only_be_snake_case')          # => :snake_case
 LuckyCase.cases('validformultiple')                    # => [ :snake_case, :camel_case, :dash_case, :word_case ]
+
 # checkers
 LuckyCase.snake_case?('valid_snake_case')              # => true
 LuckyCase.upper_snake_case?('UPPER_SNAKE')             # => true
@@ -96,10 +100,12 @@ a = 'ExampleString'
 a.pascal_case?                          # => true
 a.snake_case                            # => 'example_string'
 a                                       # => 'ExampleString'
+
 # string variable manipulation
 a.snake_case!                           # => 'example_string'
 a                                       # => 'example_string'
 ...
+
 # identifiers
 # got a other method name here because 'case' might be to common and cause conflicts
 b = 'example'
