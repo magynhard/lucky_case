@@ -85,3 +85,33 @@ RSpec.describe String do
     end
   end
 end
+
+#----------------------------------------------------------------------------------------------------
+
+RSpec.describe String, '#valid_case_string?' do
+  context 'check valid case strings: ' do
+    it "recognizes valid case string 'snake_case'" do
+      expect('snake_case'.valid_case_string?).to eql(true)
+    end
+    it "recognizes valid case string 'UPPER-DASH-CASE'" do
+      expect('UPPER-DASH-CASE'.valid_case_string?).to eql(true)
+    end
+    it "recognizes valid case string 'word case string'" do
+      expect('word case string'.valid_case_string?).to eql(true)
+    end
+    it "recognizes valid case string 'some Mixed-case_string'" do
+      expect('some Mixed-case_string'.valid_case_string?).to eql(true)
+    end
+  end
+  context 'check invalid case strings: ' do
+    it "does not recognize invalid case string '4pple Cais'" do
+      expect('4pple Cais'.valid_case_string?).to eql(false)
+    end
+    it "does not recognize invalid case string '$pecial'" do
+      expect('$pecial'.valid_case_string?).to eql(false)
+    end
+    it "does not recognize invalid case string ')(§/$=)?'" do
+      expect(')(§/$=)?'.valid_case_string?).to eql(false)
+    end
+  end
+end

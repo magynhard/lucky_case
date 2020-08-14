@@ -55,7 +55,7 @@ LuckyCase.constantize('SOME_CONSTANT')                 # => SomeConstant
 LuckyCase.constantize('some/path_example/folder')      # => Some::PathExample::Folder
 LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant'
 LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)     # => 'some/pathExample/folder'
-# identifier
+# identifiers
 LuckyCase.case('this_can_only_be_snake_case')          # => :snake_case
 LuckyCase.cases('validformultiple')                    # => [ :snake_case, :camel_case, :dash_case, :word_case ]
 # checkers
@@ -75,12 +75,18 @@ LuckyCase.upper_case?('UPPER50984')                    # => true
 LuckyCase.lower_case?('lower_cheese')                  # => true
 LuckyCase.capital?('Some')                             # => true
 LuckyCase.capitalized?('some')                         # => false
+LuckyCase.valid_case_type?(:snake_case)                # => true
+LuckyCase.valid_case_type?(:apple_case)                # => false
+LuckyCase.valid_case_string?('validString')            # => true
+LuckyCase.valid_case_string?('1nV4lid$tring')          # => false
 ```
 
 ### Monkey patch the string class
 
-With monkey patching you can access the same methods (except deconstantize) of LuckyCase directly from strings.
+With monkey patching you can access the same methods (except deconstantize, valid_case_type?) of LuckyCase directly from strings.
 Additionally they provide versions with exclamation mark for direct manipulation.
+
+Because the method #case is so general and could lead to conflicts, it is called #letter_case here.
 
 ```ruby
 require 'lucky_case/string'
@@ -93,6 +99,12 @@ a                                       # => 'ExampleString'
 # string variable manipulation
 a.snake_case!                           # => 'example_string'
 a                                       # => 'example_string'
+...
+# identifiers
+# got a other method name here because 'case' might be to common and cause conflicts
+b = 'example'
+b.letter_case                           # => :snake_case
+b.letter_cases                          # => [ :snake_case, :camel_case, :dash_case, :word_case ]
 ```
 
 

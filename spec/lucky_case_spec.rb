@@ -274,7 +274,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid snake case' do
-      all_cases.reject { |k,v| k == :snake_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :snake_case }.each do |k, v|
         result = LuckyCase.snake_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -284,7 +284,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid upper snake case' do
-      all_cases.reject { |k,v| k == :upper_snake_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :upper_snake_case }.each do |k, v|
         result = LuckyCase.upper_snake_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -294,7 +294,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid pascal case' do
-      all_cases.reject { |k,v| k == :pascal_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :pascal_case }.each do |k, v|
         result = LuckyCase.pascal_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -304,7 +304,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid camel case' do
-      all_cases.reject { |k,v| k == :camel_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :camel_case }.each do |k, v|
         result = LuckyCase.camel_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -314,7 +314,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid dash case' do
-      all_cases.reject { |k,v| k == :dash_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :dash_case }.each do |k, v|
         result = LuckyCase.dash_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -324,7 +324,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid upper dash case' do
-      all_cases.reject { |k,v| k == :upper_dash_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :upper_dash_case }.each do |k, v|
         result = LuckyCase.upper_dash_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -334,7 +334,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid train case' do
-      all_cases.reject { |k,v| k == :train_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :train_case }.each do |k, v|
         result = LuckyCase.train_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -344,7 +344,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid word case' do
-      all_cases.reject { |k,v| k == :word_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :word_case }.each do |k, v|
         result = LuckyCase.word_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -354,7 +354,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid upper word case' do
-      all_cases.reject { |k,v| k == :upper_word_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :upper_word_case }.each do |k, v|
         result = LuckyCase.upper_word_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -364,7 +364,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid capital word case' do
-      all_cases.reject { |k,v| k == :capital_word_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :capital_word_case }.each do |k, v|
         result = LuckyCase.capital_word_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -374,7 +374,7 @@ RSpec.describe LuckyCase do
       expect(result).to eql(true)
     end
     it 'can check invalid sentence case' do
-      all_cases.reject { |k,v| k == :sentence_case }.each do |k,v|
+      all_cases.reject { |k, v| k == :sentence_case }.each do |k, v|
         result = LuckyCase.sentence_case?(v)
         expect(result).to eql(false), "Failed with '#{k}'"
       end
@@ -1322,6 +1322,62 @@ RSpec.describe LuckyCase, '#deconstantize' do
         end
         expect(LuckyCase.deconstantize(Object.const_get(source), target: :string, case_type: :snake_case)).to eql(expected_result)
       end
+    end
+  end
+end
+
+#----------------------------------------------------------------------------------------------------
+
+RSpec.describe LuckyCase, '#valid_case_type?' do
+  context 'check valid case types: ' do
+    it "recognizes valid case type 'snake_case'" do
+      expect(LuckyCase.valid_case_type?(:snake_case)).to eql(true)
+    end
+    it "recognizes valid case type 'upper_dash_case'" do
+      expect(LuckyCase.valid_case_type?(:upper_dash_case)).to eql(true)
+    end
+    it "recognizes all defined case types" do
+      LuckyCase::CASES.keys.each do |c|
+        expect(LuckyCase.valid_case_type?(c)).to eql(true), "Unrecognized case type '#{c}'"
+      end
+    end
+  end
+  context 'check invalid case types: ' do
+    it "does not recognize invalid case type 'apple_case'" do
+      expect(LuckyCase.valid_case_type?(:apple_case)).to eql(false)
+    end
+    it "does not recognize invalid case type 'banana_case'" do
+      expect(LuckyCase.valid_case_type?(:banana_case)).to eql(false)
+    end
+  end
+end
+
+#----------------------------------------------------------------------------------------------------
+
+RSpec.describe LuckyCase, '#valid_case_string?' do
+  context 'check valid case strings: ' do
+    it "recognizes valid case string 'snake_case'" do
+      expect(LuckyCase.valid_case_string?('snake_case')).to eql(true)
+    end
+    it "recognizes valid case string 'UPPER-DASH-CASE'" do
+      expect(LuckyCase.valid_case_string?('UPPER-DASH-CASE')).to eql(true)
+    end
+    it "recognizes valid case string 'word case string'" do
+      expect(LuckyCase.valid_case_string?('word case string')).to eql(true)
+    end
+    it "recognizes valid case string 'some Mixed-case_string'" do
+      expect(LuckyCase.valid_case_string?('some Mixed-case_string')).to eql(true)
+    end
+  end
+  context 'check invalid case strings: ' do
+    it "does not recognize invalid case string '4pple Cais'" do
+      expect(LuckyCase.valid_case_string?('4pple Cais')).to eql(false)
+    end
+    it "does not recognize invalid case string '$pecial'" do
+      expect(LuckyCase.valid_case_string?('$pecial')).to eql(false)
+    end
+    it "does not recognize invalid case string ')(§/$=)?'" do
+      expect(LuckyCase.valid_case_string?(')(§/$=)?')).to eql(false)
     end
   end
 end

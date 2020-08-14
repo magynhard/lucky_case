@@ -101,6 +101,26 @@ module LuckyCase
     raise InvalidCaseError.new error_message
   end
 
+  # Check if given case type is a valid case type
+  # 
+  # @param [Symbol, String] case_type
+  # @return [Boolean]
+  def self.valid_case_type?(case_type)
+    if CASES.keys.include? case_type.to_sym
+      true
+    else
+      false
+    end
+  end
+
+  # Check if the string matches any of the available cases
+  # 
+  # @param [String] case_type
+  # @return [Boolean]
+  def self.valid_case_string?(string)
+    self.case(string) != nil
+  end
+  
   #----------------------------------------------------------------------------------------------------
   # UPPER CASE
   #----------------------------------------------------------------------------------------------------

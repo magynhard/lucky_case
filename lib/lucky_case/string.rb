@@ -46,6 +46,13 @@ class String
     set_self_value self.convert_case(case_type, preserve_prefixed_underscores: preserve_prefixed_underscores)
   end
 
+  # Check if the string matches any of the available cases
+  #
+  # @return [Boolean]
+  def valid_case_string?()
+    LuckyCase.case(self) != nil
+  end
+
   #----------------------------------------------------------------------------------------------------
   # UPPER CASE
   #----------------------------------------------------------------------------------------------------
