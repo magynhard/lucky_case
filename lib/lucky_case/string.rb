@@ -50,7 +50,7 @@ class String
   # UPPER CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts all characters inside the string
+  # Convert all characters inside the string
   # into upper case
   #
   # @example conversion
@@ -65,7 +65,7 @@ class String
     set_self_value self.upper_case
   end
 
-  # Checks if all characters inside the string are upper case
+  # Check if all characters inside the string are upper case
   #
   # @return [Boolean]
   def upper_case?()
@@ -76,7 +76,7 @@ class String
   # LOWER CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts all characters inside the string
+  # Convert all characters inside the string
   # into lower case
   #
   # @example conversion
@@ -91,7 +91,7 @@ class String
     set_self_value self.lower_case
   end
 
-  # Checks if all characters inside the string are lower case
+  # Check if all characters inside the string are lower case
   #
   # @return [Boolean]
   def lower_case?()
@@ -102,7 +102,7 @@ class String
   # SNAKE CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into snake case
   #
   # @example conversion
@@ -118,7 +118,7 @@ class String
     set_self_value self.snake_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is snake case
+  # Check if the string is snake case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -126,7 +126,7 @@ class String
     LuckyCase.snake_case? self, allow_prefixed_underscores: allow_prefixed_underscores
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper snake case
   #
   # @example conversion
@@ -142,7 +142,7 @@ class String
     set_self_value self.upper_snake_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is upper snake case
+  # Check if the string is upper snake case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -154,7 +154,7 @@ class String
   # PASCAL CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into pascal case
   #
   # @example conversion
@@ -170,7 +170,7 @@ class String
     set_self_value self.pascal_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is upper pascal case
+  # Check if the string is upper pascal case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -182,7 +182,7 @@ class String
   # CAMEL CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into camel case
   #
   # @example conversion
@@ -198,7 +198,7 @@ class String
     set_self_value self.camel_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is camel case
+  # Check if the string is camel case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -210,7 +210,7 @@ class String
   # DASH CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into dash case
   #
   # @example conversion
@@ -226,7 +226,7 @@ class String
     set_self_value self.dash_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is dash case
+  # Check if the string is dash case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -234,7 +234,7 @@ class String
     LuckyCase.dash_case? self, allow_prefixed_underscores: allow_prefixed_underscores
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper dash case
   #
   # @example conversion
@@ -250,7 +250,7 @@ class String
     set_self_value self.upper_dash_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is upper dash case
+  # Check if the string is upper dash case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -262,7 +262,7 @@ class String
   # TRAIN CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into train case
   #
   # @example conversion
@@ -278,7 +278,7 @@ class String
     set_self_value self.train_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is train case
+  # Check if the string is train case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -290,7 +290,7 @@ class String
   # WORD CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into word case
   #
   # @example conversion
@@ -306,7 +306,7 @@ class String
     set_self_value self.word_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is word case
+  # Check if the string is word case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -314,7 +314,7 @@ class String
     LuckyCase.word_case? self, allow_prefixed_underscores: allow_prefixed_underscores
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper word case
   #
   # @example conversion
@@ -330,7 +330,7 @@ class String
     set_self_value self.upper_word_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is upper word case
+  # Check if the string is upper word case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -338,7 +338,7 @@ class String
     LuckyCase.upper_word_case? self, allow_prefixed_underscores: allow_prefixed_underscores
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into capital word case
   #
   # @example conversion
@@ -354,7 +354,7 @@ class String
     set_self_value self.capital_word_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is capital word case
+  # Check if the string is capital word case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -366,7 +366,7 @@ class String
   # SENTENCE CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into sentence case
   #
   # @example conversion
@@ -382,7 +382,7 @@ class String
     set_self_value self.sentence_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is sentence case
+  # Check if the string is sentence case
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Boolean]
@@ -394,7 +394,7 @@ class String
   # CAPITALIZE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the first character to capital
+  # Convert the first character to capital
   #
   # @param [Boolean] skip_prefixed_underscores
   # @return [String]
@@ -402,7 +402,7 @@ class String
     LuckyCase.capitalize self, skip_prefixed_underscores: skip_prefixed_underscores
   end
 
-  # Converts the first character to capital
+  # Convert the first character to capital
   #
   # @param [Boolean] skip_prefixed_underscores
   # @return [String]
@@ -418,7 +418,7 @@ class String
     self.capital! skip_prefixed_underscores: skip_prefixed_underscores
   end
 
-  # Checks if the strings first character is a capital letter
+  # Check if the strings first character is a capital letter
   #
   # @param [Boolean] skip_prefixed_underscores
   # @return [Boolean]
@@ -426,7 +426,7 @@ class String
     LuckyCase.capital? self, skip_prefixed_underscores: skip_prefixed_underscores
   end
 
-  # Checks if the strings first character is a capital letter
+  # Check if the strings first character is a capital letter
   #
   # @param [Boolean] skip_prefixed_underscores
   # @return [Boolean]
@@ -438,7 +438,7 @@ class String
   # MIXED CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into mixed case
   #
   # @example conversion
@@ -454,7 +454,7 @@ class String
     set_self_value self.mixed_case preserve_prefixed_underscores: preserve_prefixed_underscores
   end
 
-  # Checks if the string is a valid mixed case (without special characters!)
+  # Check if the string is a valid mixed case (without special characters!)
   #
   # @return [Boolean]
   def mixed_case?()
@@ -491,7 +491,7 @@ class String
   # CONSTANTIZE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the string from any case
+  # Convert the string from any case
   # into pascal case and casts it into a constant
   #
   # @example conversion

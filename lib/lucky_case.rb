@@ -22,7 +22,7 @@ module LuckyCase
       upper_word_case: /^[[:upper:]]{1}[[:upper:] 0-9]+$/,
       capital_word_case: /^([[:upper:]][[:lower:]0-9]*\ |[0-9]+\ )*([[:upper:]][[:lower:]0-9]*)$/,
       sentence_case: /^[[:upper:]]{1}[[:lower:] 0-9]+$/,
-      mixed_case: /^[[:upper:][:lower:]][[:upper:][:lower:]_\-0-9]*$/,
+      mixed_case: /^[[:upper:][:lower:]][[:upper:][:lower:]_\-0-9 ]*$/,
   }
 
   FORMATS = {
@@ -105,7 +105,7 @@ module LuckyCase
   # UPPER CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts all characters inside the string
+  # Convert all characters inside the string
   # into upper case
   #
   # @example conversion
@@ -117,7 +117,7 @@ module LuckyCase
     string.upcase
   end
 
-  # Checks if all characters inside the string are upper case
+  # Check if all characters inside the string are upper case
   #
   # @param [String] string to check
   # @return [Boolean]
@@ -129,7 +129,7 @@ module LuckyCase
   # LOWER CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts all characters inside the string
+  # Convert all characters inside the string
   # into lower case
   #
   # @example conversion
@@ -141,7 +141,7 @@ module LuckyCase
     string.downcase
   end
 
-  # Checks if all characters inside the string are lower case
+  # Check if all characters inside the string are lower case
   #
   # @param [String] string to check
   # @return [Boolean]
@@ -153,7 +153,7 @@ module LuckyCase
   # SNAKE CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into snake case
   #
   # @example conversion
@@ -172,7 +172,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is snake case
+  # Check if the string is snake case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -186,7 +186,7 @@ module LuckyCase
     _case_match? s, :snake_case
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper snake case
   #
   # @example conversion
@@ -205,7 +205,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is upper snake case
+  # Check if the string is upper snake case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -223,7 +223,7 @@ module LuckyCase
   # PASCAL CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into pascal case
   #
   # @example conversion
@@ -242,7 +242,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is upper pascal case
+  # Check if the string is upper pascal case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -260,7 +260,7 @@ module LuckyCase
   # CAMEL CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into camel case
   #
   # @example conversion
@@ -279,7 +279,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is camel case
+  # Check if the string is camel case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -297,7 +297,7 @@ module LuckyCase
   # DASH CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into dash case
   #
   # @example conversion
@@ -316,7 +316,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is dash case
+  # Check if the string is dash case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -330,7 +330,7 @@ module LuckyCase
     _case_match? s, :dash_case
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper dash case
   #
   # @example conversion
@@ -344,7 +344,7 @@ module LuckyCase
     upper_case s
   end
 
-  # Checks if the string is upper dash case
+  # Check if the string is upper dash case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -362,7 +362,7 @@ module LuckyCase
   # TRAIN CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into train case
   #
   # @example conversion
@@ -381,7 +381,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is train case
+  # Check if the string is train case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -399,7 +399,7 @@ module LuckyCase
   # WORD CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into word case
   #
   # @example conversion
@@ -418,7 +418,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is word case
+  # Check if the string is word case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -432,7 +432,7 @@ module LuckyCase
     _case_match? s, :word_case
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into upper word case
   #
   # @example conversion
@@ -451,7 +451,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is upper word case
+  # Check if the string is upper word case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -465,7 +465,7 @@ module LuckyCase
     _case_match? s, :upper_word_case
   end
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into capital word case
   #
   # @example conversion
@@ -484,7 +484,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is capital word case
+  # Check if the string is capital word case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -502,7 +502,7 @@ module LuckyCase
   # SENTENCE CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into sentence case
   #
   # @example conversion
@@ -521,7 +521,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is sentence case
+  # Check if the string is sentence case
   #
   # @param [String] string to check
   # @param [Boolean] allow_prefixed_underscores
@@ -539,7 +539,7 @@ module LuckyCase
   # CAPITALIZE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the first character to capital
+  # Convert the first character to capital
   #
   # @param [String] string to convert
   # @param [Boolean] skip_prefixed_underscores
@@ -559,7 +559,7 @@ module LuckyCase
     end
   end
 
-  # Converts the first character to capital
+  # Convert the first character to capital
   #
   # @param [String] string to convert
   # @param [Boolean] skip_prefixed_underscores
@@ -568,7 +568,7 @@ module LuckyCase
     capital string, skip_prefixed_underscores: skip_prefixed_underscores
   end
 
-  # Checks if the strings first character is a capital letter
+  # Check if the strings first character is a capital letter
   #
   # @param [String] string to check
   # @param [Boolean] skip_prefixed_underscores
@@ -582,7 +582,7 @@ module LuckyCase
     _case_match? s, :capital
   end
 
-  # Checks if the strings first character is a capital letter
+  # Check if the strings first character is a capital letter
   #
   # @param [String] string to check
   # @param [Boolean] skip_prefixed_underscores
@@ -595,7 +595,7 @@ module LuckyCase
   # MIXED CASE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the given string from any case
+  # Convert the given string from any case
   # into mixed case
   #
   # @example conversion
@@ -617,7 +617,7 @@ module LuckyCase
     end
   end
 
-  # Checks if the string is a valid mixed case (without special characters!)
+  # Check if the string is a valid mixed case (without special characters!)
   #
   # @param [String] string to check
   # @return [Boolean]
@@ -672,7 +672,7 @@ module LuckyCase
   # CONSTANTIZE
   #----------------------------------------------------------------------------------------------------
 
-  # Converts the string from any case
+  # Convert the string from any case
   # into pascal case and casts it into a constant
   #
   # @example conversion
@@ -730,7 +730,7 @@ module LuckyCase
   #----------------------------------------------------------------------------------------------------
   # HELPERS
   #----------------------------------------------------------------------------------------------------
-
+  
   # Return string without underscores at the start
   #
   # @param [String] string
