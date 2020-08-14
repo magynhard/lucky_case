@@ -25,7 +25,7 @@ Useful when working with conventions, where class names, method names and file n
 
 You can either use the static LuckyCase class with its method or optionally monkey patch the String class.
 
-### Use the static class only
+### Approach 1: Using the static class
 ```ruby
 require 'lucky_case'
 
@@ -85,7 +85,7 @@ LuckyCase.valid_case_string?('validString')            # => true
 LuckyCase.valid_case_string?('1nV4lid$tring')          # => false
 ```
 
-### Monkey patch the string class
+### Approach 2: Monkey patch the string class
 
 With monkey patching you can access the same methods (except deconstantize, valid_case_type?) of LuckyCase directly from strings.
 Additionally they provide versions with exclamation mark for direct manipulation.
