@@ -77,9 +77,9 @@ module LuckyCase
     end
     if matched_cases.empty?
       nil
-      # reject mixed case if there are other matches
-      # because it would always be included if one other case matches
     elsif matched_cases.size > 1
+      # reject :mixed_case if there are other matches
+      # because it would always be included if one other case matches
       matched_cases.reject { |e| e == :mixed_case }
     else
       matched_cases
@@ -115,7 +115,7 @@ module LuckyCase
 
   # Check if the string matches any of the available cases
   # 
-  # @param [String] case_type
+  # @param [String] string
   # @return [Boolean]
   def self.valid_case_string?(string)
     self.case(string) != nil
@@ -802,10 +802,10 @@ module LuckyCase
   # Check if the given case matches the string
   #
   # @param [String] string
-  # @param [Symbol,String] case_to_match
+  # @param [Symbol,String] case_type
   # @return [Boolean]
-  def self._case_match?(string, case_to_match)
-    !!(string =~ CASES[case_to_match.to_sym])
+  def self._case_match?(string, case_type)
+    !!(string =~ CASES[case_type.to_sym])
   end
 
   #----------------------------------------------------------------------------------------------------
