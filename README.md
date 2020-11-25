@@ -49,14 +49,14 @@ LuckyCase.convert_case('some_snake', :pascal_case)     # => 'SomeSnake'
 # transformers
 LuckyCase.lower_case('Some_FuckingShit')               # => 'some_fuckingshit'
 LuckyCase.upper_case('Some_FuckingShit')               # => 'SOME_FUCKINGSHIT'
-LuckyCase.swap_case('SomeSwappy_Case-Example')         # => 'sOMEsWAPPY-cASE_eXAMPLE'
 LuckyCase.capital('example')                           # => 'Example'
 LuckyCase.capitalize('example')                        # => 'Example'
+LuckyCase.swap_case('SomeSwappy_Case-Example')         # => 'sOMEsWAPPY-cASE_eXAMPLE'
 LuckyCase.constantize('some_constant')                 # => SomeConstant
 LuckyCase.constantize('SOME_CONSTANT')                 # => SomeConstant
 LuckyCase.constantize('some/path_example/folder')      # => Some::PathExample::Folder
 LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant' // default case_type: :snake_case
-LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)     # => 'some/pathExample/folder'
+LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)  # => 'some/pathExample/folder'
 
 # identifiers
 LuckyCase.case('this_can_only_be_snake_case')          # => :snake_case
@@ -90,7 +90,7 @@ LuckyCase.valid_case_string?('1nV4lid$tring')          # => false
 With monkey patching you can access the same methods (except deconstantize, valid_case_type?) of LuckyCase directly from strings.
 Additionally they provide versions with exclamation mark for direct manipulation.
 
-Because the method #case is so general and could lead to conflicts, it is called #letter_case here.
+Because the method #case and #cases are so general and could lead to conflicts, they are called #letter_case and #letter_cases at strings.
 
 ```ruby
 require 'lucky_case/string'
