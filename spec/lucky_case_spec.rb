@@ -13,7 +13,7 @@ end
 
 RSpec.describe String do
   it "not been monkey patched" do
-    expect { "String".lucky_case }.to raise_error(NoMethodError)
+    expect { "String".letter_case }.to raise_error(NoMethodError)
     expect { "String".upper_case }.to raise_error(NoMethodError)
     expect { "String".snake_case }.to raise_error(NoMethodError)
     expect { "String".capital }.to raise_error(NoMethodError)

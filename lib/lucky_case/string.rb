@@ -21,6 +21,11 @@ class String
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Symbol,nil] symbol of type, nil if no match
+  def letter_case(allow_prefixed_underscores: true)
+    LuckyCase.case self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  # easter egg version of #letter_case
   def lucky_case(allow_prefixed_underscores: true)
     LuckyCase.case self, allow_prefixed_underscores: allow_prefixed_underscores
   end
@@ -29,6 +34,11 @@ class String
   #
   # @param [Boolean] allow_prefixed_underscores
   # @return [Array<Symbol>,nil] symbols of types, nil if no one matches
+  def letter_cases(allow_prefixed_underscores: true)
+    LuckyCase.cases self, allow_prefixed_underscores: allow_prefixed_underscores
+  end
+
+  # easter egg version of #letter_cases
   def lucky_cases(allow_prefixed_underscores: true)
     LuckyCase.cases self, allow_prefixed_underscores: allow_prefixed_underscores
   end

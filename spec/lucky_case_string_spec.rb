@@ -61,15 +61,15 @@ RSpec.describe String do
     it 'detects cases' do
       # require inside, to make not available only here in this file
       require 'lucky_case/string'
-      expect('snake_case_string'.lucky_case).to eql(:snake_case)
-      expect('UPPER_SNAKE_CASE_STRING'.lucky_case).to eql(:upper_snake_case)
-      expect('PascalCaseString'.lucky_case).to eql(:pascal_case)
-      expect('camelCaseString'.lucky_case).to eql(:camel_case)
-      expect('dash-case-string'.lucky_case).to eql(:dash_case)
-      expect('UPPER-DASH-CASE-STRING'.lucky_case).to eql(:upper_dash_case)
-      expect('Train-Case-String'.lucky_case).to eql(:train_case)
-      expect('mixed_Case-string'.lucky_case).to eql(:mixed_case)
-      expect('mi%&/xed_Case-string'.lucky_case).to eql(nil)
+      expect('snake_case_string'.letter_case).to eql(:snake_case)
+      expect('UPPER_SNAKE_CASE_STRING'.letter_case).to eql(:upper_snake_case)
+      expect('PascalCaseString'.letter_case).to eql(:pascal_case)
+      expect('camelCaseString'.letter_case).to eql(:camel_case)
+      expect('dash-case-string'.letter_case).to eql(:dash_case)
+      expect('UPPER-DASH-CASE-STRING'.letter_case).to eql(:upper_dash_case)
+      expect('Train-Case-String'.letter_case).to eql(:train_case)
+      expect('mixed_Case-string'.letter_case).to eql(:mixed_case)
+      expect('mi%&/xed_Case-string'.letter_case).to eql(nil)
     end
     it 'checks cases' do
       # require inside, to make not available only here in this file
