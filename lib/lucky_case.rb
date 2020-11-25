@@ -632,9 +632,9 @@ module LuckyCase
     loop do
       converted = ''
       a.each do |part|
-        converted += self.send CASES.keys.sample, part
+        converted += self.convert_case part, CASES.keys.sample, preserve_prefixed_underscores: preserve_prefixed_underscores
       end
-      converted = self.send CASES.keys.sample, converted
+      converted = self.convert_case converted, CASES.keys.sample, preserve_prefixed_underscores: preserve_prefixed_underscores
       break if converted != string && underscores_at_start(string) + converted != string
     end
     if preserve_prefixed_underscores
