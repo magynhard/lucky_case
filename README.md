@@ -55,7 +55,7 @@ LuckyCase.capitalize('example')                        # => 'Example'
 LuckyCase.constantize('some_constant')                 # => SomeConstant
 LuckyCase.constantize('SOME_CONSTANT')                 # => SomeConstant
 LuckyCase.constantize('some/path_example/folder')      # => Some::PathExample::Folder
-LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant'
+LuckyCase.deconstantize(SomeConstant)                  # => 'some_constant' // default case_type: :snake_case
 LuckyCase.deconstantize(Some::PathExample::Folder, case_type: :camel_case)     # => 'some/pathExample/folder'
 
 # identifiers
