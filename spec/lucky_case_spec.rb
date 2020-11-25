@@ -1113,6 +1113,68 @@ RSpec.describe LuckyCase do
     end
   end
 
+  context 'mixed case conversions: ' do
+    it 'default into mixed case' do
+      conversion_examples = [
+          'ExampleOne',
+          'exampleTwo',
+          'example-three',
+          'Example-Four',
+          'EXAMPLE-FIVE',
+          'EXAMPLE_SIX',
+          'example_Seven-extra',
+          'example_eight',
+          '_example_underscoreOne',
+          '___example_underscoreTwo',
+      ]
+      conversion_examples.each do |source|
+        final_result = LuckyCase.mixed_case source
+        expect(final_result).not_to eql(source)
+        expect(LuckyCase.mixed_case?(final_result)).to eql(true)
+      end
+    end
+    it 'into mixed case with preserving underscores' do
+      conversion_examples = [
+          '_ExampleOne',
+          '_exampleTwo',
+          '____example-three',
+          '_Example-Four',
+          '__EXAMPLE-FIVE',
+          '___EXAMPLE_SIX',
+          '_____example_Seven-extra',
+          '__example_eight',
+          '_example_underscoreOne',
+          '___example_underscoreTwo',
+      ]
+      conversion_examples.each do |source|
+        final_result = LuckyCase.mixed_case source
+        expect(final_result).not_to eql(source)
+        expect(final_result[0]).to eql('_')
+        expect(LuckyCase.mixed_case?(final_result)).to eql(true)
+      end
+    end
+    it 'into mixed case without preserving underscores' do
+      conversion_examples = {
+          '_ExampleOne' => 'EXAMPLE ONE',
+          '_exampleTwo' => 'EXAMPLE TWO',
+          '____example-three' => 'EXAMPLE THREE',
+          '_Example-Four' => 'EXAMPLE FOUR',
+          '__EXAMPLE-FIVE' => 'EXAMPLE FIVE',
+          '___EXAMPLE_SIX' => 'EXAMPLE SIX',
+          'example_Seven-extra' => 'EXAMPLE SEVEN EXTRA',
+          '__example_eight' => 'EXAMPLE EIGHT',
+          '_example_underscoreOne' => 'EXAMPLE UNDERSCORE ONE',
+          '___example_underscoreTwo' => 'EXAMPLE UNDERSCORE TWO',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.mixed_case source, preserve_prefixed_underscores: false
+        expect(final_result).not_to eql(source)
+        expect(final_result[0]).not_to eql('_')
+        expect(LuckyCase.mixed_case?(final_result)).to eql(true)
+      end
+    end
+  end
+
   context 'invalid conversions: ' do
     it 'into fantasia' do
       expect { LuckyCase.convert_case('snake_case', :fantasia_case) }.to raise_error(InvalidCaseError)

@@ -120,7 +120,7 @@ module LuckyCase
   def self.valid_case_string?(string)
     self.case(string) != nil
   end
-  
+
   #----------------------------------------------------------------------------------------------------
   # UPPER CASE
   #----------------------------------------------------------------------------------------------------
@@ -616,7 +616,9 @@ module LuckyCase
   #----------------------------------------------------------------------------------------------------
 
   # Convert the given string from any case
-  # into mixed case
+  # into mixed case.
+  #
+  # The new string is ensured to be different from the input.
   #
   # @example conversion
   #   'this-isAnExample_string' => 'This-Is_anExample-string'
@@ -626,9 +628,14 @@ module LuckyCase
   # @return [String]
   def self.mixed_case(string, preserve_prefixed_underscores: true)
     a = split_case_string string
-    converted = ''
-    a.each do |part|
-      converted += self.send random_case, part
+    converted = nil
+    loop do
+      converted = ''
+      a.each do |part|
+        converted += self.send CASES.keys.sample, part
+      end
+      converted = self.send CASES.keys.sample, converted
+      break if converted != string && underscores_at_start(string) + converted != string
     end
     if preserve_prefixed_underscores
       underscores_at_start(string) + converted
@@ -641,8 +648,13 @@ module LuckyCase
   #
   # @param [String] string to check
   # @return [Boolean]
-  def self.mixed_case?(string)
-    _case_match? string, :mixed_case
+  def self.mixed_case?(string, allow_prefixed_underscores: true)
+    s = if allow_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    _case_match? s, :mixed_case
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -750,7 +762,7 @@ module LuckyCase
   #----------------------------------------------------------------------------------------------------
   # HELPERS
   #----------------------------------------------------------------------------------------------------
-  
+
   # Return string without underscores at the start
   #
   # @param [String] string
