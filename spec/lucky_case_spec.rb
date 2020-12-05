@@ -1154,19 +1154,19 @@ RSpec.describe LuckyCase do
       end
     end
     it 'into mixed case without preserving underscores' do
-      conversion_examples = {
-          '_ExampleOne' => 'EXAMPLE ONE',
-          '_exampleTwo' => 'EXAMPLE TWO',
-          '____example-three' => 'EXAMPLE THREE',
-          '_Example-Four' => 'EXAMPLE FOUR',
-          '__EXAMPLE-FIVE' => 'EXAMPLE FIVE',
-          '___EXAMPLE_SIX' => 'EXAMPLE SIX',
-          'example_Seven-extra' => 'EXAMPLE SEVEN EXTRA',
-          '__example_eight' => 'EXAMPLE EIGHT',
-          '_example_underscoreOne' => 'EXAMPLE UNDERSCORE ONE',
-          '___example_underscoreTwo' => 'EXAMPLE UNDERSCORE TWO',
-      }
-      conversion_examples.each do |source, expected_result|
+      conversion_examples = [
+          '_ExampleOne',
+          '_exampleTwo',
+          '____example-three',
+          '_Example-Four',
+          '__EXAMPLE-FIVE',
+          '___EXAMPLE_SIX',
+          'example_Seven-extra',
+          '__example_eight',
+          '_example_underscoreOne',
+          '___example_underscoreTwo',
+      ]
+      conversion_examples.each do |source|
         final_result = LuckyCase.mixed_case source, preserve_prefixed_underscores: false
         expect(final_result).not_to eql(source)
         expect(final_result[0]).not_to eql('_')
