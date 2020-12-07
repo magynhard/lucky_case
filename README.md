@@ -2,6 +2,8 @@
 
 The lucky ruby gem to identify and convert strings from any letter case to another. Plus some extra functions.
 
+I also created a javascript port named [lucky-case](https://github.com/magynhard/lucky-case).
+
 Useful when working with conventions, where class names, method names and file names needs to be converted.
 
 * Converters: Only characters, numbers, dashes and underlines are allowed inside a string.
@@ -87,10 +89,10 @@ LuckyCase.valid_case_string?('1nV4lid$tring')          # => false
 
 ### Approach 2: Monkey patch the string class
 
-With monkey patching you can access the same methods (except deconstantize, valid_case_type?) of LuckyCase directly from strings.
+With monkey patching you can access the same methods (except `#deconstantize`, `#valid_case_type?`) of LuckyCase directly from strings.
 Additionally they provide versions with exclamation mark for direct manipulation.
 
-Because the method #case and #cases are so general and could lead to conflicts, they are called #letter_case and #letter_cases at strings.
+Because the methods `#case` and `#cases` are so general and could lead to conflicts, they are called `#letter_case` and `#letter_cases` at strings.
 
 ```ruby
 require 'lucky_case/string'
