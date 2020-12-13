@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe String do
   context 'Test Conversions' do
     it 'converts into several cases' do
-      # require inside, to make not available only here in this file
+      # require inside, to make not available in other tests but only here in this file
       require 'lucky_case/string'
       expect("TestCase".snake_case).to eql('test_case')
       expect("TestCase".upper_snake_case).to eql('TEST_CASE')
