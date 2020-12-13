@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe String do
   context 'Test Conversions' do
     it 'converts into several cases' do
-      # require inside, to make not available in other tests but only here in this file
+      # require inside, to make not available in other tests but only here in this test case
       require 'lucky_case/string'
       expect("TestCase".snake_case).to eql('test_case')
       expect("TestCase".upper_snake_case).to eql('TEST_CASE')
@@ -20,7 +20,7 @@ RSpec.describe String do
       expect("some".capital).to eql('Some')
     end
     it 'converts! into several cases' do
-      # require inside, to make not available only here in this file
+      # require inside, to make not available in other tests but only here in this test case
       require 'lucky_case/string'
       s = "TestCase"; s.snake_case!
       expect(s).to eql('test_case')
@@ -50,7 +50,7 @@ RSpec.describe String do
       expect(s).to eql('sWAPmORE_tHAN-hIM')
     end
     it 'constantizes' do
-      # require inside, to make not available only here in this file
+      # require inside, to make not available in other tests but only here in this test case
       require 'lucky_case/string'
       TestCaseString = 'salami'
       expect("TestCaseString".constantize).to eql('salami')
@@ -59,7 +59,7 @@ RSpec.describe String do
       expect("TestCaseModule::SubModule".constantize).to eql(TestCaseModule::SubModule)
     end
     it 'detects cases' do
-      # require inside, to make not available only here in this file
+      # require inside, to make not available in other tests but only here in this test case
       require 'lucky_case/string'
       expect('snake_case_string'.letter_case).to eql(:snake_case)
       expect('UPPER_SNAKE_CASE_STRING'.letter_case).to eql(:upper_snake_case)
@@ -72,7 +72,7 @@ RSpec.describe String do
       expect('mi%&/xed_Case-string'.letter_case).to eql(nil)
     end
     it 'checks cases' do
-      # require inside, to make not available only here in this file
+      # require inside, to make not available in other tests but only here in this test case
       require 'lucky_case/string'
       expect('snake_case_string'.snake_case?).to eql(true)
       expect('UPPER_SNAKE_CASE_STRING'.upper_snake_case?).to eql(true)
