@@ -1113,6 +1113,63 @@ RSpec.describe LuckyCase do
     end
   end
 
+  context 'decapitalize conversions: ' do
+    it 'default into lower first letter' do
+      conversion_examples = {
+          'ExampleOne' => 'exampleOne',
+          'exampleTwo' => 'exampleTwo',
+          'example-three' => 'example-three',
+          'Example-Four' => 'example-Four',
+          'EXAMPLE-FIVE' => 'eXAMPLE-FIVE',
+          'EXAMPLE_SIX' => 'eXAMPLE_SIX',
+          'example_Seven-extra' => 'example_Seven-extra',
+          'example_eight' => 'example_eight',
+          '_Example_underscoreOne' => '_Example_underscoreOne',
+          '___Example_underscoreTwo' => '___Example_underscoreTwo',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.decapitalize source
+        expect(final_result).to eql(expected_result)
+      end
+    end
+    it 'into lower first letter with skipping underscores' do
+      conversion_examples = {
+          'ExampleOne' => 'exampleOne',
+          'exampleTwo' => 'exampleTwo',
+          'example-three' => 'example-three',
+          'Example-Four' => 'example-Four',
+          'EXAMPLE-FIVE' => 'eXAMPLE-FIVE',
+          'EXAMPLE_SIX' => 'eXAMPLE_SIX',
+          'example_Seven-extra' => 'example_Seven-extra',
+          'example_eight' => 'example_eight',
+          '_Example_underscoreOne' => '_example_underscoreOne',
+          '___Example_underscoreTwo' => '___example_underscoreTwo',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.decapitalize source, skip_prefixed_underscores: true
+        expect(final_result).to eql(expected_result)
+      end
+    end
+    it 'into lower first letter without explicitly skipping underscores' do
+      conversion_examples = {
+          '_ExampleOne' => '_ExampleOne',
+          '_exampleTwo' => '_exampleTwo',
+          '____example-three' => '____example-three',
+          '_Example-Four' => '_Example-Four',
+          '__EXAMPLE-FIVE' => '__EXAMPLE-FIVE',
+          '___eXAMPLE_SIX' => '___eXAMPLE_SIX',
+          'Example_Seven-extra' => 'example_Seven-extra',
+          '__Example_eight' => '__Example_eight',
+          '_Example_underscoreOne' => '_Example_underscoreOne',
+          '___Example_underscoreTwo' => '___Example_underscoreTwo',
+      }
+      conversion_examples.each do |source, expected_result|
+        final_result = LuckyCase.decapitalize source, skip_prefixed_underscores: false
+        expect(final_result).to eql(expected_result)
+      end
+    end
+  end
+
   context 'mixed case conversions: ' do
     it 'default into mixed case' do
       conversion_examples = [

@@ -611,6 +611,44 @@ module LuckyCase
     capital? string, skip_prefixed_underscores: skip_prefixed_underscores
   end
 
+  # Convert the first character to lower case
+  #
+  # @param [String] string to convert
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [String]
+  def self.decapitalize(string, skip_prefixed_underscores: false)
+    return string if string.empty?
+    s = if skip_prefixed_underscores
+          cut_underscores_at_start string
+        else
+          string
+        end
+    s = s[0].downcase + s[1..-1]
+    if skip_prefixed_underscores
+      underscores_at_start(string) + s
+    else
+      s
+    end
+  end
+
+  # Check if the strings first character is a lower letter
+  #
+  # @param [String] string to check
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [Boolean]
+  def self.not_capital?(string, skip_prefixed_underscores: false)
+    decapitalized? string, skip_prefixed_underscores
+  end
+
+  # Check if the strings first character is a lower letter
+  #
+  # @param [String] string to check
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [Boolean]
+  def self.decapitalized?(string, skip_prefixed_underscores: false)
+    !(capital? string, skip_prefixed_underscores)
+  end
+
   #----------------------------------------------------------------------------------------------------
   # MIXED CASE
   #----------------------------------------------------------------------------------------------------

@@ -451,6 +451,34 @@ class String
     self.capital? skip_prefixed_underscores: skip_prefixed_underscores
   end
 
+  # Convert the first character to lower case
+  #
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [String]
+  def decapitalize(skip_prefixed_underscores: false)
+    LuckyCase.decapitalize self, skip_prefixed_underscores: skip_prefixed_underscores
+  end
+
+  def decapitalize!(skip_prefixed_underscores: false)
+    set_self_value self.decapitalize skip_prefixed_underscores: skip_prefixed_underscores
+  end
+
+  # Check if the strings first character is a lower letter
+  #
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [Boolean]
+  def decapitalized?(skip_prefixed_underscores: false)
+    LuckyCase.decapitalized? self, skip_prefixed_underscores: skip_prefixed_underscores
+  end
+
+  # Check if the strings first character is a lower letter
+  #
+  # @param [Boolean] skip_prefixed_underscores
+  # @return [Boolean]
+  def not_capital?(skip_prefixed_underscores: false)
+    self.decapitalized? skip_prefixed_underscores: skip_prefixed_underscores
+  end
+
   #----------------------------------------------------------------------------------------------------
   # MIXED CASE
   #----------------------------------------------------------------------------------------------------

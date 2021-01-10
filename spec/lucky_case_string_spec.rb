@@ -44,6 +44,8 @@ RSpec.describe String do
       expect(s).to eql('Some')
       s = "some"; s.capitalize!
       expect(s).to eql('Some')
+      s = "SoMe"; s.decapitalize!
+      expect(s).to eql('soMe')
       s = "swap_it"; s.swap_case!
       expect(s).to eql('SWAP-IT')
       s = "SwapMore-Than_Him"; s.swap_case!
