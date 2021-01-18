@@ -1,6 +1,7 @@
 # lucky_case
+[![Gem Version](https://badge.fury.io/rb/lucky_case.svg)](https://badge.fury.io/rb/lucky_case)
 
-The lucky ruby gem to identify and convert strings from any letter case to another. Plus some extra functions.
+> The lucky ruby gem to identify and convert strings from any letter case to another. Plus some extra functions.
 
 I also created a javascript port named [lucky-case](https://github.com/magynhard/lucky-case).
 
