@@ -1,5 +1,7 @@
 # lucky_case
-[![Gem Version](https://badge.fury.io/rb/lucky_case.svg)](https://badge.fury.io/rb/lucky_case)
+![Gem](https://img.shields.io/gem/v/lucky_case?color=default&style=plastic&logo=ruby&logoColor=red)
+![Gem](https://img.shields.io/gem/dt/lucky_case?color=blue&style=plastic)
+[![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg?style=plastic&logo=mit)](LICENSE)
 
 > The lucky ruby gem to identify and convert strings from any letter case to another. Plus some extra functions.
 
